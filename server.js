@@ -56,7 +56,7 @@ function main() {
     })
   );
   app.use(bodyParser.json());
-  app.use(express.static("public"));
+  app.use(express.static(__dirname + "/public"));
   // Routes & Handlers
   app.post("/api/login", handlers.login);
   app.get("/api/checkToken", middleware.checkToken, handlers.index);
