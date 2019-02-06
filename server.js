@@ -56,9 +56,14 @@ function main() {
     })
   );
   app.use(bodyParser.json());
+  app.use(express.static("public"));
   // Routes & Handlers
   app.post("/api/login", handlers.login);
   app.get("/api/checkToken", middleware.checkToken, handlers.index);
+  app.get("/*", (req, res) => {
+    console.error(__dirname);
+    res.sendFile(__dirname + "/public/index.html");
+  });
   app.listen(port, () => console.log(`Server is listening on port: ${port}`));
 }
 
